@@ -4,18 +4,18 @@
 class StageScene : public IScene
 {
 public:
-	void Init() override;
+	void Initilize() override;
 	void Update()override;
 	void Draw()override;
 	int GameClose()override;
 private:
 
-	Vector2 playerPos;
-	bool isShot;
-	Vector2 bulletPos;
+	Vector2 playerPos_;
+	bool isShot_;
+	Vector2 bulletPos_;
 
 
-	Vector2 enemyPos;
-	bool isAlive;
+	Vector2 enemyPos_;
+	bool isAlive_;
 
 };

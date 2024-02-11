@@ -37,7 +37,7 @@ int GameManager::Run() {
 
 		// シーン変更チェック
 		if (prevSceneNo_ != currentSceneNo_) {
-			sceneArr_[currentSceneNo_]->Init();
+			sceneArr_[currentSceneNo_]->Initilize();
 		}
 
 		///

@@ -3,7 +3,7 @@
 class ClearScene : public IScene
 {
 public:
-	void Init() override;
+	void Initilize() override;
 	void Update()override;
 	void Draw()override;
 	int GameClose()override;

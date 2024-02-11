@@ -1,7 +1,7 @@
 ﻿#include "TitleScene.h"
 #include "Novice.h"
 
-void TitleScene::Init()
+void TitleScene::Initilize()
 {
 	input_ = Input::GetInstance();
 
@@ -16,7 +16,7 @@ void TitleScene::Update()
 }
 void TitleScene::Draw()
 {
-	Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x660000FF, kFillModeSolid);
+	Novice::DrawBox(0, 0, 1280, 720, 0.0f, GREEN, kFillModeSolid);
 }
 
 // ゲームを終了
