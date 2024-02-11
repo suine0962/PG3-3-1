@@ -1,36 +1,21 @@
 ﻿#pragma once
 #include "IScene.h"
-
-#include <memory>
-
-#include "Player.h"
-#include "Enemy.h"
-
-// ゲームシーン
+#include "Vector2.h"
 class StageScene : public IScene
 {
 public:
 	void Init() override;
-	void Update() override;
-	void Draw() override;
+	void Update()override;
+	void Draw()override;
+	int GameClose()override;
+private:
 
-private: //関数
-	/// <summary>
-	/// 衝突判定と応答
-	/// </summary>
-	void CheckAllCollisions();
+	Vector2 playerPos;
+	bool isShot;
+	Vector2 bulletPos;
 
-private:// メンバ変数
 
-	// 自キャラ
-	std::unique_ptr<Player> player_;
+	Vector2 enemyPos;
+	bool isAlive;
 
-	// 自弾
-	std::unique_ptr<PlayerBullet> playerBullet_;
-
-	// 敵キャラ
-	std::unique_ptr<Enemy> enemy_ = nullptr;
-
-	bool isEnemyAlive = 1;
 };
-

@@ -1,27 +1,26 @@
 ﻿#pragma once
-
-#include <memory>		// std::unique_ptrを使うために必要
-#include "IScene.h"		// 基底クラスを読み込む
-#include "TitleScene.h" // 各シーンを読み込む
+#include <memory>
+#include "IScene.h"
 #include "StageScene.h"
+#include "TitleScene.h"
 #include "ClearScene.h"
-
+//#include "Input.h"
 class GameManager
 {
 private:
-	//シーンを保持するメンバ変数
+	// シーンを保持するメンバ変数
 	std::unique_ptr<IScene> sceneArr_[3];
 
-	// どのステージを呼び出すか管理する変数
-	int currentSceneNo_; // 現在のシーン
-	int prevSceneNo_; // 前のシーン
-	// キー入力結果を受け取る箱
-	char keys_[256] = { 0 };
-	char preKeys_[256] = { 0 };
+	// どのステージを呼び出すかを管理する変数
+	int currentSceneNo_ = 0;
+	int prevSceneNo_ = 0;
+
+	//Input* input_ = nullptr;
 
 public:
-	GameManager(); // コンストラクタ
-	~GameManager(); // デストラクタ
+	GameManager();
+	~GameManager();
 
-	int Run();  //この関数でゲームループを呼び出す
+	int Run();
+
 };

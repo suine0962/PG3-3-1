@@ -1,18 +1,28 @@
-﻿#include"ClearScene.h"
-#include <Novice.h>
-
+﻿#include "ClearScene.h"
+#include "Novice.h"
 void ClearScene::Init()
 {
+
 }
 
 void ClearScene::Update()
 {
-	if (keys_[DIK_RETURN] && !preKeys_[DIK_RETURN]) {
-		sceneNo = TITLE;
+	// シーン遷移
+	if (input_->TriggerKey(DIK_SPACE)) {
+		sceneNo_ = TITLE;
 	}
 }
-
 void ClearScene::Draw()
 {
-	Novice::ScreenPrintf(1280 / 2, 720 / 2, "ClearScene");
+	Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x000066FF, kFillModeSolid);
+}
+
+
+// ゲームを終了
+int ClearScene::GameClose()
+{
+	if (input_->TriggerKey(DIK_ESCAPE)) {
+		return true;
+	}
+	return false;
 }
