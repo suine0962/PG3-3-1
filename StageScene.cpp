@@ -12,11 +12,24 @@ void StageScene::Initilize()
 	enemyPos_ = { 640,50 };
 	isAlive_ = true;
 
+	inputHandler_ = new InputHandle();
+
+	//Assign command
+	inputHandler_->AssignMoveRightCommand2PressKeyD();
+	inputHandler_->AssignMoveLeftCommand2PressKeyA();
+
+	//New Player
+	player_ = new Player();
+	player_->Initilize();
+
+
 
 }
 
 void StageScene::Update()
 {
+	bulletPos_ = playerPos_;
+
 	// 弾の発射
 	if (input_->TriggerKey(DIK_SPACE)) {
 		isShot_ = true;
@@ -25,6 +38,8 @@ void StageScene::Update()
 	if (isShot_) {
 		bulletPos_.y -= 5;
 	}
+
+
 	// 当たり判定
 	if (bulletPos_.y - 10 <= enemyPos_.y + 40) {
 		isAlive_ = false;
@@ -35,12 +50,20 @@ void StageScene::Update()
 		sceneNo_ = CLEAR;
 	}
 
+	command_ = inputHandler_->HandleInput();
 
+	if (this->command_) {
+		command_->Exec(*player_);
+	}
+	player_->Update();
 }
+
+
 void StageScene::Draw()
 {
 	Novice::DrawBox(0, 0, 1280, 720, 0.0f, RED, kFillModeSolid);
-	Novice::DrawEllipse((int)playerPos_.x, (int)playerPos_.y, 40, 40, 0.0f, WHITE, kFillModeSolid);
+	//Novice::DrawEllipse((int)playerPos.x, (int)playerPos.y, 40, 40, 0.0f, WHITE, kFillModeSolid);
+	player_->Draw();
 	if (isShot_) {
 		Novice::DrawEllipse((int)bulletPos_.x, (int)bulletPos_.y, 10, 10, 0.0f, WHITE, kFillModeSolid);
 	}

@@ -1,19 +1,14 @@
 #pragma once
-#include "command.h"
-#include<Novice.h>
+#include "ICommand.h"
 class InputHandle
 {
 public:
-
 	ICommand* HandleInput();
 
-	void AssignMoveLeftPressA();
-	void AssignMovrRightPressD();
+	void AssignMoveLeftCommand2PressKeyA();
+	void AssignMoveRightCommand2PressKeyD();
 
 private:
-
 	ICommand* pressKeyD_;
 	ICommand* pressKeyA_;
-
 };
-
